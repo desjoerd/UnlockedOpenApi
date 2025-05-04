@@ -9,22 +9,17 @@ using Unlocked.Api.Endpoints.Models;
 
 namespace Unlocked.Api.Endpoints;
 
-internal static class PostLockByIdUnlock
+internal static class PostLockByIdUnlockV1
 {
-    internal static void MapPostLockByIdUnlock(this IEndpointRouteBuilder routes)
+    internal static void MapPostLockByIdUnlockV1(this IEndpointRouteBuilder routes)
     {
         routes
             .MapPost("locks/unlock", HandlerV1)
             .HasDeprecatedApiVersion(new ApiVersion(1))
-            .WithName("UnlockV1");
-
-        routes
-            .MapPost("locks/{lockId:guid}/unlock", HandlerV2)
-            .HasApiVersion(new ApiVersion(2))
-            .WithName("UnlockV2");
+            .WithName(nameof(PostLockByIdUnlockV1));
     }
 
-    internal class UnlockRequestBodyV1
+    internal class UnlockRequestBody
     {
     }
 
@@ -41,7 +36,7 @@ internal static class PostLockByIdUnlock
     }
 
     private static async Task<Results<Ok<UnlockResponse>, NotFound, ProblemHttpResult>> HandlerV1(
-        UnlockRequestBodyV1 requestBody,
+        UnlockRequestBody requestBody,
         ApiVersion apiVersion,
         CancellationToken cancellationToken)
     {

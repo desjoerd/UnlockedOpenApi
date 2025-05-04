@@ -15,7 +15,8 @@ public static class GetLockById
     {
         routes.MapGet("locks/{lockId:guid}", Handler)
             .HasApiVersion(new ApiVersion(1))
-            .HasApiVersion(new ApiVersion(2));
+            .HasApiVersion(new ApiVersion(2))
+            .WithName(nameof(GetLockById));
     }
 
     private class LockItem

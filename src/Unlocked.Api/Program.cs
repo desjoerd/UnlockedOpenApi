@@ -86,9 +86,10 @@ apiGroup
     .ProducesProblem(500);
 
 
-apiGroup.MapGetWeatherForecast();
-apiGroup.MapPostLockByIdUnlock();
 apiGroup.MapGetLockById();
+apiGroup.MapGetWeatherForecast();
+apiGroup.MapPostLockByIdUnlockV1();
+apiGroup.MapPostLockByIdUnlockV2();
 
 app.Run();
 
