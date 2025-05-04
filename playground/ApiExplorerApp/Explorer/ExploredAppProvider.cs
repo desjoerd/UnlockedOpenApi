@@ -28,7 +28,7 @@ public class ExploredAppProvider
                 return _exploredAppServiceProvider;
             }
 
-            _exploredAppServiceProvider = HostingApplication.GetServiceProvider(typeof(Unlocked.Api.Endpoints.GetLockStatus).Assembly);
+            _exploredAppServiceProvider = HostingApplication.GetServiceProvider(typeof(Unlocked.Api.Endpoints.GetLockById).Assembly);
         }
 
         return _exploredAppServiceProvider;

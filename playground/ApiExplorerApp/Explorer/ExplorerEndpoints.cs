@@ -1,6 +1,6 @@
 ﻿using Unlocked.Api.Explorer.Endpoints;
 
-namespace Unlocked.Api.Explorer;
+namespace ApiExplorerApp.Explorer;
 
 public static class ExplorerEndpoints
 {

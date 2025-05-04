@@ -88,12 +88,7 @@ apiGroup
 
 apiGroup.MapGetWeatherForecast();
 apiGroup.MapPostLockByIdUnlock();
-apiGroup.MapPost("/no-response", () =>
-{
-    return Results.Ok();
-});
-
-//app.MapExplorer();
+apiGroup.MapGetLockById();
 
 app.Run();
 
