@@ -12,9 +12,12 @@
   },
   "readme": "README.md",
   "scripts": {
-    "lint-openapi:v1": "spectral lint ./src/Unlocked.Api/openapi.json",
-    "lint-openapi:v2": "spectral lint ./src/Unlocked.Api/openapi_v2.json",
-    "lint-openapi": "npm run lint-openapi:v1 && npm run lint-openapi:v2"
+    "openapi-lint:v1": "spectral lint ./src/Unlocked.Api/openapi.json",
+    "openapi-lint:v2": "spectral lint ./src/Unlocked.Api/openapi_v2.json",
+    "openapi-lint": "npm run lint-openapi:v1 && npm run lint-openapi:v2",
+    "openapi-changes:report:v1": "npx openapi-changes html-report --report-file ./openapi-changes-report-v1.html . ./src/Unlocked.Api/openapi.json",
+    "openapi-changes:report:v2": "npx openapi-changes html-report --report-file ./openapi-changes-report-v2.html . ./src/Unlocked.Api/openapi_v2.json",
+    "openapi-changes:report": "npm run openapi-changes:report:v1 && npm run openapi-changes:report:v2"
   },
   "devDependencies": {
     "@pb33f/openapi-changes": "^0.0.76",

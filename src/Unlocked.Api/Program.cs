@@ -92,11 +92,5 @@ apiGroup.MapGetLockById();
 
 app.Run();
 
-
-public class Test
-{
-    [MinLength(3)]
-    public string Name { get; set; } = string.Empty;
-    public int Age { get; set; }
-    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+internal partial class Program {
 }

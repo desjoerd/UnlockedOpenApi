@@ -183,10 +183,19 @@
   "components": {
     "schemas": {
       "LockItem": {
+        "required": [
+          "status"
+        ],
         "type": "object",
         "properties": {
           "status": {
             "$ref": "#/components/schemas/LockStatus"
+          },
+          "location": {
+            "type": [
+              "null",
+              "string"
+            ]
           }
         }
       },

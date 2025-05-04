@@ -1,3 +1,5 @@
+using System.Text.Json.Serialization;
+
 using Asp.Versioning;
 
 using Microsoft.AspNetCore.Http.HttpResults;
@@ -18,7 +20,10 @@ public static class GetLockById
 
     private class LockItem
     {
-        public LockStatus Status { get; set; }
+        public required LockStatus Status { get; set; }
+
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public string? Location { get; set; }
     }
 
     private static Results<Ok<LockItem>, NotFound<ProblemDetails>> Handler(
