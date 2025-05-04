@@ -1,0 +1,7 @@
+<Project>
+  <PropertyGroup>
+  </PropertyGroup>
+  <ItemGroup>
+    <InternalsVisibleTo Include="$(AssemblyName).Tests" />
+  </ItemGroup>
+</Project>

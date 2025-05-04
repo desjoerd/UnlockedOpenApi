@@ -1,0 +1,74 @@
+extends: ["spectral:oas", "@stoplight/spectral-url-versioning"]
+
+rules:
+  info-contact: false
+
+  path-casing:
+    given: $.paths
+    then:
+      # Targeting the key of paths object i.e. /products/{productId}
+      field: "@key"
+      function: pattern
+      functionOptions:
+        # For underscore_case: ^/([a-z0-9]+(_[a-z0-9]+)*)?(/[a-z0-9]+(_[a-z0-9]+)*|/{.+})*$
+        # For camelCase case: ^/([a-z][a-zA-Z0-9]+)?(/[a-z][a-zA-Z0-9]+|/{[a-z][a-zA-Z0-9]+})*$
+        match: ^/([a-z0-9]+(-[a-z0-9]+)*)?(/[a-z0-9]+(-[a-z0-9]+)*|/{.+})*$
+    message: Paths must be kebab-case
+    severity: error
+
+  resource-names-plural:
+    given: $.paths
+    then:
+      # Targeting the key of paths object i.e. /products/{productId}
+      field: "@key"
+      function: pattern
+      functionOptions:
+        match: ^(/[\w-]+s)(/\{[^/]+\})?(/[\w-]+)?(/\{[^/]+\})?$
+    message: Resource names should generally be plural
+    # Don’t create this as an error, but rather a warning or info level rule,
+    # considering there are exceptions for singleton resources.
+    severity: warn
+
+  no-verb-in-paths:
+    given: $.paths
+    then:
+      # Targeting the key of paths object i.e. /products/{productId}
+      field: "@key"
+      function: pattern
+      functionOptions:
+        # Feel free to add other verbs to this list
+        notMatch: (GET|PUT|POST|DELETE|LIST|CREATE|REMOVE)
+    message: Paths must not have HTTP verbs in them
+    severity: error
+
+  paths-avoid-special-characters:
+    given: $.paths
+    then:
+      # Targeting the key of paths object i.e. /products/{productId}
+      field: "@key"
+      function: pattern
+      functionOptions:
+        # Change match to notMatch if you're not looking for versions on the path level
+        notMatch: ^[$&+,;=?@]*$
+    message: Avoid using special characters in paths
+    severity: warn
+
+  path-parameters-camelcase:
+    given: $..parameters[?(@.in == 'path')].name
+    then:
+      function: casing
+      functionOptions:
+        type: camel
+        disallowDigits: true
+    message: Path parameters should be camelCase and not contain digits
+    severity: error
+
+  query-parameters-camelcase:
+    given: $..parameters[?(@.in == 'query')].name
+    then:
+      function: casing
+      functionOptions:
+        type: camel
+        disallowDigits: true
+    message: Query parameters should be camelCase and not contain digits
+    severity: error

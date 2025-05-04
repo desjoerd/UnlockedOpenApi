@@ -1,0 +1,24 @@
+{
+  "name": "unlockapi",
+  "private": "true",
+  "version": "1.0.0",
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "directories": {
+    "doc": "docs"
+  },
+  "readme": "README.md",
+  "scripts": {
+    "lint-openapi:v1": "spectral lint ./src/Unlocked.Api/openapi.json",
+    "lint-openapi:v2": "spectral lint ./src/Unlocked.Api/openapi_v2.json",
+    "lint-openapi": "npm run lint-openapi:v1 && npm run lint-openapi:v2"
+  },
+  "devDependencies": {
+    "@pb33f/openapi-changes": "^0.0.76",
+    "@stoplight/spectral-cli": "^6.15.0",
+    "@stoplight/spectral-url-versioning": "^1.0.6"
+  }
+}
