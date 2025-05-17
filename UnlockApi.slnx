@@ -1,0 +1,14 @@
+<Solution>
+  <Configurations>
+    <Platform Name="Any CPU" />
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Folder Name="/playground/">
+    <Project Path="playground/ApiExplorerApp/ApiExplorerApp.csproj" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="src/Unlocked.Api.Tests/Unlocked.Api.Tests.csproj" />
+    <Project Path="src/Unlocked.Api/Unlocked.Api.csproj" />
+  </Folder>
+</Solution>
