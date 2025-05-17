@@ -10,6 +10,7 @@
       "extensions": [
         "esbenp.prettier-vscode",
         "ms-dotnettools.csdevkit",
+        "ms-graph.kiota",
         "seatonjiang.gitmoji-vscode",
         "stoplight.spectral"
       ]
