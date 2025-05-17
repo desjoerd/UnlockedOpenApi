@@ -4,6 +4,9 @@
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
+  <Folder Name="/examples/">
+    <Project Path="examples/VersionedUnlocked.Api/VersionedUnlocked.Api.csproj" />
+  </Folder>
   <Folder Name="/playground/">
     <Project Path="playground/ApiExplorerApp/ApiExplorerApp.csproj" />
   </Folder>
