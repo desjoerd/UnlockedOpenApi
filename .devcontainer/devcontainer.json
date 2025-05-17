@@ -1,18 +1,25 @@
 {
-    "name": ".NET 10 Preview 3",
-    "build": {
-        "dockerfile": "Dockerfile"
-    },
-    "onCreateCommand": "git config --global --add safe.directory ${containerWorkspaceFolder}",
-    "postCreateCommand": "bash .devcontainer/post-create.sh",
-    "customizations": {
-        "vscode": {
-            "extensions": [ ]
-        }
-    },
-	"remoteEnv": {
-  		"ASPNETCORE_Kestrel__Certificates__Default__Password": "SecurePwdGoesHere",
-		"ASPNETCORE_Kestrel__Certificates__Default__Path": "/home/vscode/.aspnet/https/aspnetapp.pfx"
-	},
-	"mounts": [ "source=${env:HOME}${env:USERPROFILE}/.aspnet/https,target=/home/vscode/.aspnet/https,type=bind" ]
+  "name": ".NET 10 Preview 4",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "onCreateCommand": "git config --global --add safe.directory ${containerWorkspaceFolder}",
+  "postCreateCommand": "bash .devcontainer/post-create.sh",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "esbenp.prettier-vscode",
+        "ms-dotnettools.csdevkit",
+        "seatonjiang.gitmoji-vscode",
+        "stoplight.spectral"
+      ]
+    }
+  },
+  "remoteEnv": {
+    "ASPNETCORE_Kestrel__Certificates__Default__Password": "SecurePwdGoesHere",
+    "ASPNETCORE_Kestrel__Certificates__Default__Path": "/home/vscode/.aspnet/https/aspnetapp.pfx"
+  },
+  "mounts": [
+    "source=${env:HOME}${env:USERPROFILE}/.aspnet/https,target=/home/vscode/.aspnet/https,type=bind"
+  ]
 }

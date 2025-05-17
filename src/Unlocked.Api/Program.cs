@@ -1,10 +1,6 @@
-
-using System.ComponentModel.DataAnnotations;
-
 using Asp.Versioning;
 
 using Microsoft.AspNetCore.Authentication.BearerToken;
-using Microsoft.OpenApi.Models;
 
 using Unlocked.Api.Endpoints;
 using Unlocked.Api.OpenApi;
@@ -93,5 +89,4 @@ apiGroup.MapPostLockByIdUnlockV2();
 
 app.Run();
 
-internal partial class Program {
-}
+internal partial class Program;

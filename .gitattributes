@@ -1,0 +1,4 @@
+* text=auto
+
+# sh files should use LF line endings
+*.sh text eol=lf
