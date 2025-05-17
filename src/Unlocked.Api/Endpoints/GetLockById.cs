@@ -1,7 +1,5 @@
 using System.Text.Json.Serialization;
 
-using Asp.Versioning;
-
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,8 +12,6 @@ public static class GetLockById
     public static void MapGetLockById(this IEndpointRouteBuilder routes)
     {
         routes.MapGet("locks/{lockId:guid}", Handler)
-            .HasApiVersion(new ApiVersion(1))
-            .HasApiVersion(new ApiVersion(2))
             .WithName(nameof(GetLockById));
     }
 

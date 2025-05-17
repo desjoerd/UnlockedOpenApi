@@ -2,15 +2,15 @@
   "openapi": "3.1.1",
   "info": {
     "title": "Unlocked.Api | v1",
-    "version": "v1"
+    "version": "1.0.0"
   },
   "servers": [
     {
-      "url": "https://example.com/v1",
+      "url": "https://example.com",
       "description": "production"
     },
     {
-      "url": "https://staging.example.com/v1",
+      "url": "https://staging.example.com",
       "description": "staging"
     }
   ],
@@ -93,16 +93,88 @@
               }
             }
           }
-        },
-        "deprecated": true
+        }
+      }
+    },
+    "/weatherforecast": {
+      "get": {
+        "tags": [
+          "GetWeatherForecast"
+        ],
+        "operationId": "GetWeatherForecast",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WeatherForecastResponse"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/locks/unlock": {
       "post": {
         "tags": [
-          "PostLockByIdUnlockV1"
+          "PostLockByIdUnlock"
         ],
-        "operationId": "PostLockByIdUnlockV1",
+        "operationId": "PostLockByIdUnlock",
         "requestBody": {
           "content": {
             "application/json": {
@@ -167,8 +239,7 @@
               }
             }
           }
-        },
-        "deprecated": true
+        }
       }
     }
   },
@@ -249,6 +320,42 @@
             "$ref": "#/components/schemas/LockStatus"
           }
         }
+      },
+      "WeatherForecastResponse": {
+        "required": [
+          "date",
+          "temperatureC",
+          "summary"
+        ],
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "temperatureC": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "summary": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "temperatureF": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          }
+        }
       }
     }
   },
@@ -257,7 +364,10 @@
       "name": "GetLockById"
     },
     {
-      "name": "PostLockByIdUnlockV1"
+      "name": "GetWeatherForecast"
+    },
+    {
+      "name": "PostLockByIdUnlock"
     }
   ]
 }

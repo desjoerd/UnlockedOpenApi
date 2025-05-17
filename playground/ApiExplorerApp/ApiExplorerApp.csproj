@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" />
+    <PackageReference Include="Asp.Versioning.Http" />
   </ItemGroup>
 
   <ItemGroup>

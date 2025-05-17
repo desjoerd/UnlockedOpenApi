@@ -1,5 +1,3 @@
-using Asp.Versioning;
-
 using Microsoft.AspNetCore.Authentication.BearerToken;
 
 using Unlocked.Api.Endpoints;
@@ -10,34 +8,14 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddOptions<UnlockedOpenApiCustomizationOptions>()
     .BindConfiguration("UnlockedOpenApiCustomization");
 
-builder.Services.AddOpenApi("v1", options =>
+builder.Services.AddOpenApi(options =>
 {
     options.AddDocumentTransformer<UnlockedOpenApiServersDocumentTransformer>();
 
-    options.PatchDocumentForVersion(new ApiVersion(1));
-    options.AddLoggingOpenApiTransformers();
-});
-builder.Services.AddOpenApi("v2", options =>
-{
-    options.AddDocumentTransformer<UnlockedOpenApiServersDocumentTransformer>();
-
-    options.PatchDocumentForVersion(new ApiVersion(2));
     options.AddLoggingOpenApiTransformers();
 });
 
 builder.Services.AddValidation();
-
-builder.Services.AddApiVersioning(options =>
-    {
-        options.ApiVersionReader = new UrlSegmentApiVersionReader();
-        options.UnsupportedApiVersionStatusCode = 501;
-    })
-    .AddApiExplorer(options =>
-    {
-        options.SubstituteApiVersionInUrl = false;
-        options.GroupNameFormat = "'v'VVV";
-    })
-    .EnableApiVersionBinding();
 
 builder.Services.ConfigureHttpJsonOptions(options =>
 {
@@ -70,8 +48,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 var apiGroup = app
-    .NewVersionedApi()
-    .MapGroup("/v{version:apiVersion}");
+    .MapGroup("");
 
 apiGroup
     .WithMetadata(new ProducesResponseTypeMetadata(200, typeof(int)))
@@ -84,8 +61,7 @@ apiGroup
 
 apiGroup.MapGetLockById();
 apiGroup.MapGetWeatherForecast();
-apiGroup.MapPostLockByIdUnlockV1();
-apiGroup.MapPostLockByIdUnlockV2();
+apiGroup.MapPostLockByIdUnlock();
 
 app.Run();
 

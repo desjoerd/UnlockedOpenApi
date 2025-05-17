@@ -1,5 +1,3 @@
-using Asp.Versioning;
-
 using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace Unlocked.Api.Endpoints;
@@ -9,7 +7,6 @@ internal static class GetWeatherForecast
     internal static void MapGetWeatherForecast(this IEndpointRouteBuilder routes)
     {
         routes.MapGet("weatherforecast", Handler)
-            .HasApiVersion(ApiVersion.Neutral)
             .WithName("GetWeatherForecast");
     }
 
