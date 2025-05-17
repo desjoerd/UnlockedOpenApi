@@ -33,8 +33,4 @@
     </PackageReference>
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Unlocked.ServiceDefaults\Unlocked.ServiceDefaults.csproj" />
-  </ItemGroup>
-
 </Project>
