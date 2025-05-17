@@ -1,7 +1,7 @@
 {
   "openapi": "3.1.1",
   "info": {
-    "title": "Unlocked.Api | v1",
+    "title": "VersionedUnlocked.Api | v1",
     "version": "v1"
   },
   "servers": [
