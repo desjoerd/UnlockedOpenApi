@@ -13,5 +13,6 @@
   <Folder Name="/src/">
     <Project Path="src/Unlocked.Api.Tests/Unlocked.Api.Tests.csproj" />
     <Project Path="src/Unlocked.Api/Unlocked.Api.csproj" />
+    <Project Path="src/Unlocked.Client/Unlocked.Client.csproj" />
   </Folder>
 </Solution>

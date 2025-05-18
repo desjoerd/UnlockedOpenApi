@@ -1,9 +1,16 @@
+using System.Text.Json.Serialization;
+
 using Microsoft.AspNetCore.Authentication.BearerToken;
 
 using Unlocked.Api.Endpoints;
 using Unlocked.Api.OpenApi;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.ConfigureHttpJsonOptions(options =>
+{
+    options.SerializerOptions.NumberHandling = JsonNumberHandling.Strict;
+});
 
 builder.Services.AddOptions<UnlockedOpenApiCustomizationOptions>()
     .BindConfiguration("UnlockedOpenApiCustomization");
