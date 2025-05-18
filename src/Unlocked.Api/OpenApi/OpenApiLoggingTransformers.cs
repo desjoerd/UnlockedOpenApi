@@ -23,16 +23,13 @@ public static class OpenApiLoggingTransformers
         options.CreateSchemaReferenceId = (jsonTypeInfo) =>
         {
             var result = prevCreateSchemaReferenceId(jsonTypeInfo);
-
-            if(LogSchemaReferenceId && (LogNullSchemaReferenceId || result != null))
-            {
-                Console.WriteLine($"[Doc: {options.DocumentName}] CreateSchemaReferenceId: {jsonTypeInfo.Type}, Result: {result ?? "null"}");
-            }
+            Console.WriteLine($"[Doc: {options.DocumentName}] CreateSchemaReferenceId: {jsonTypeInfo.Type}, Result: {result ?? "null"}");
             return result;
         };
 
         options.AddSchemaTransformer((schema, context, cancel) =>
         {
+            string typeName = context.JsonTypeInfo.Type.Name;
             string typeWithProp = string.Empty;
             string declaringType = string.Empty;
             if (context.JsonPropertyInfo != null)
@@ -41,20 +38,20 @@ public static class OpenApiLoggingTransformers
                 typeWithProp = $" ({context.JsonPropertyInfo.DeclaringType.Name}.{context.JsonPropertyInfo.Name})";
             }
 
-            Console.WriteLine($"[Doc: {context.DocumentName}] Schema Transformer: {context.JsonTypeInfo.Type.Name.PadRight(declaringType.Length)}{typeWithProp}");
+            Console.WriteLine($"[Doc: {context.DocumentName}] Schema Transformers Executed: {typeName.PadRight(declaringType.Length)}{typeWithProp}");
 
             return Task.CompletedTask;
         });
 
         options.AddOperationTransformer((operation, context, cancel) =>
         {
-            Console.WriteLine($"[Doc: {context.DocumentName}] Operation Transformer: {context.Description.HttpMethod} /{context.Description.RelativePath}");
+            Console.WriteLine($"[Doc: {context.DocumentName}] Operation Transformer Executed: {context.Description.HttpMethod} /{context.Description.RelativePath}");
             return Task.CompletedTask;
         });
 
         options.AddDocumentTransformer((doc, context, cancel) =>
         {
-            Console.WriteLine($"[Doc: {context.DocumentName}] Document Transformer: {doc.Info.Title}");
+            Console.WriteLine($"[Doc: {context.DocumentName}] Document Transformer Executed: {doc.Info.Title}");
             return Task.CompletedTask;
         });
     }
