@@ -11,7 +11,6 @@ using System.IO;
 using System.Threading.Tasks;
 using System;
 using Unlocked.Client.Locks;
-using Unlocked.Client.Weatherforecast;
 namespace Unlocked.Client
 {
     /// <summary>
@@ -24,11 +23,6 @@ namespace Unlocked.Client
         public global::Unlocked.Client.Locks.LocksRequestBuilder Locks
         {
             get => new global::Unlocked.Client.Locks.LocksRequestBuilder(PathParameters, RequestAdapter);
-        }
-        /// <summary>The weatherforecast property</summary>
-        public global::Unlocked.Client.Weatherforecast.WeatherforecastRequestBuilder Weatherforecast
-        {
-            get => new global::Unlocked.Client.Weatherforecast.WeatherforecastRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>
         /// Instantiates a new <see cref="global::Unlocked.Client.UnlockedApiClient"/> and sets the default values.

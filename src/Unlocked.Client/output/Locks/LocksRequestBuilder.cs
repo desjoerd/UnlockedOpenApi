@@ -7,7 +7,6 @@ using System.IO;
 using System.Threading.Tasks;
 using System;
 using Unlocked.Client.Locks.Item;
-using Unlocked.Client.Locks.Unlock;
 namespace Unlocked.Client.Locks
 {
     /// <summary>
@@ -16,11 +15,6 @@ namespace Unlocked.Client.Locks
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class LocksRequestBuilder : BaseRequestBuilder
     {
-        /// <summary>The unlock property</summary>
-        public global::Unlocked.Client.Locks.Unlock.UnlockRequestBuilder Unlock
-        {
-            get => new global::Unlocked.Client.Locks.Unlock.UnlockRequestBuilder(PathParameters, RequestAdapter);
-        }
         /// <summary>Gets an item from the Unlocked.Client.locks.item collection</summary>
         /// <param name="position">Unique identifier of the item</param>
         /// <returns>A <see cref="global::Unlocked.Client.Locks.Item.WithLockItemRequestBuilder"/></returns>

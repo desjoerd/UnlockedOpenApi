@@ -123,11 +123,11 @@
     "schemas": {
       "LockItem": {
         "required": [
-          "status"
+          "lockStatus"
         ],
         "type": "object",
         "properties": {
-          "status": {
+          "lockStatus": {
             "$ref": "#/components/schemas/LockStatus"
           },
           "location": {

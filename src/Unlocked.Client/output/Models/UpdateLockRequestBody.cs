@@ -7,39 +7,32 @@ using System.IO;
 using System;
 namespace Unlocked.Client.Models
 {
+    /// <summary>
+    /// Update the lock details
+    /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
-    public partial class LockItem : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
+    public partial class UpdateLockRequestBody : IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The location property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Location { get; set; }
-#nullable restore
-#else
-        public string Location { get; set; }
-#endif
         /// <summary>The wanted status for the lock</summary>
-        public global::Unlocked.Client.Models.LockStatus? LockStatus { get; set; }
+        public global::Unlocked.Client.Models.LockStatus? Status { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="global::Unlocked.Client.Models.LockItem"/> and sets the default values.
+        /// Instantiates a new <see cref="global::Unlocked.Client.Models.UpdateLockRequestBody"/> and sets the default values.
         /// </summary>
-        public LockItem()
+        public UpdateLockRequestBody()
         {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::Unlocked.Client.Models.LockItem"/></returns>
+        /// <returns>A <see cref="global::Unlocked.Client.Models.UpdateLockRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::Unlocked.Client.Models.LockItem CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::Unlocked.Client.Models.UpdateLockRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new global::Unlocked.Client.Models.LockItem();
+            return new global::Unlocked.Client.Models.UpdateLockRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -49,8 +42,7 @@ namespace Unlocked.Client.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "location", n => { Location = n.GetStringValue(); } },
-                { "lockStatus", n => { LockStatus = n.GetEnumValue<global::Unlocked.Client.Models.LockStatus>(); } },
+                { "status", n => { Status = n.GetEnumValue<global::Unlocked.Client.Models.LockStatus>(); } },
             };
         }
         /// <summary>
@@ -60,8 +52,7 @@ namespace Unlocked.Client.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("location", Location);
-            writer.WriteEnumValue<global::Unlocked.Client.Models.LockStatus>("lockStatus", LockStatus);
+            writer.WriteEnumValue<global::Unlocked.Client.Models.LockStatus>("status", Status);
             writer.WriteAdditionalData(AdditionalData);
         }
     }
