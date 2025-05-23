@@ -23,9 +23,7 @@ public static class GetLockById
         public string? Location { get; set; }
     }
 
-    private static Results<Ok<LockItem>, NotFound<ProblemDetails>> Handler(
-        Guid lockId
-    )
+    private static Results<Ok<LockItem>, NotFound<ProblemDetails>> Handler(Guid lockId)
     {
         if (lockId == Guid.Empty)
         {
