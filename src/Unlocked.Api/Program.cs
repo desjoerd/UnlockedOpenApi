@@ -7,6 +7,8 @@ using Unlocked.Api.OpenApi;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddControllers();
+
 builder.Services.ConfigureHttpJsonOptions(options =>
 {
     options.SerializerOptions.NumberHandling = JsonNumberHandling.Strict;
@@ -26,7 +28,7 @@ builder.Services.AddValidation();
 
 builder.Services.ConfigureHttpJsonOptions(options =>
 {
-    options.SerializerOptions.Converters.Add(new System.Text.Json.Serialization.JsonStringEnumConverter(namingPolicy: System.Text.Json.JsonNamingPolicy.KebabCaseLower));
+    options.SerializerOptions.Converters.Add(new JsonStringEnumConverter(namingPolicy: System.Text.Json.JsonNamingPolicy.KebabCaseLower));
 });
 
 builder.Services.Configure<RouteHandlerOptions>(options =>
@@ -57,16 +59,12 @@ app.UseHttpsRedirection();
 var apiGroup = app
     .MapGroup("");
 
-apiGroup
-    .WithMetadata(new ProducesResponseTypeMetadata(200, typeof(int)))
-    .ProducesProblem(400)
-    .ProducesProblem(401)
-    .ProducesProblem(403)
-    .ProducesProblem(404)
-    .ProducesProblem(500);
+apiGroup.ProducesProblem(500);
 
 apiGroup.MapGetLockById();
 apiGroup.MapPostLockByIdUnlock();
+
+app.MapControllers();
 
 app.Run();
 

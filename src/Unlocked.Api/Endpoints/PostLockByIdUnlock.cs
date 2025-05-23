@@ -11,12 +11,19 @@ internal static class PostLockByIdUnlock
     internal static void MapPostLockByIdUnlock(this IEndpointRouteBuilder routes)
     {
         routes
-            .MapPost("locks/{lockId:guid}/unlock", Handler)
+            .MapPut("locks/{lockId:guid}", Handler)
             .WithName(nameof(PostLockByIdUnlock));
     }
 
-    internal class UnlockRequestBody
+    /// <summary>
+    /// Update the lock details
+    /// </summary>
+    internal class UpdateLockRequestBody
     {
+        /// <summary>
+        /// The wanted status for the lock
+        /// </summary>
+        public required LockStatus Status { get; set; }
     }
 
     internal class UnlockResponse
@@ -26,7 +33,7 @@ internal static class PostLockByIdUnlock
 
     private static async Task<Results<Ok<UnlockResponse>, NotFound, ProblemHttpResult>> Handler(
         Guid lockId,
-        UnlockRequestBody requestBody,
+        UpdateLockRequestBody requestBody,
         CancellationToken cancellationToken)
     {
         // Simulate some async work
