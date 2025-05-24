@@ -4,17 +4,23 @@ using Microsoft.OpenApi.Models;
 
 namespace Unlocked.Api.OpenApi;
 
-public class UnlockedOpenApiServersDocumentTransformer(IOptionsSnapshot<UnlockedOpenApiCustomizationOptions> options) : IOpenApiDocumentTransformer
+public class UnlockedOpenApiServersDocumentTransformer(
+    IOptionsSnapshot<UnlockedOpenApiCustomizationOptions> options
+)
+    : IOpenApiDocumentTransformer
 {
-    public Task TransformAsync(OpenApiDocument document, OpenApiDocumentTransformerContext context, CancellationToken cancellationToken)
+    public Task TransformAsync(
+        OpenApiDocument document,
+        OpenApiDocumentTransformerContext context,
+        CancellationToken cancellationToken)
     {
-        if(options.Value.Servers.Count == 0)
+        if (options.Value.Servers.Count == 0)
         {
             return Task.CompletedTask;
         }
 
         document.Servers ??= [];
-        foreach((string server, string serverUrl) in options.Value.Servers)
+        foreach ((string server, string serverUrl) in options.Value.Servers)
         {
             document.Servers.Add(new OpenApiServer
             {

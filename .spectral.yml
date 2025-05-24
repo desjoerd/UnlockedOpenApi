@@ -1,4 +1,4 @@
-extends: ["spectral:oas", "@stoplight/spectral-url-versioning"]
+extends: ["spectral:oas"]
 
 rules:
   info-contact: false

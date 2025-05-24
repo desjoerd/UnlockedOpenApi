@@ -15,7 +15,7 @@ namespace Unlocked.Client.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The wanted status for the lock</summary>
+        /// <summary>The status property</summary>
         public global::Unlocked.Client.Models.LockStatus? Status { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Unlocked.Client.Models.UpdateLockRequestBody"/> and sets the default values.

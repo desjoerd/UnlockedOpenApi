@@ -8,9 +8,6 @@ public static class OpenApiLoggingTransformers
 {
     public static void AddLoggingOpenApiTransformers(this OpenApiOptions options)
     {
-        const bool LogSchemaReferenceId = true;
-        const bool LogNullSchemaReferenceId = true;
-
         var prevShouldInclude = options.ShouldInclude;
         options.ShouldInclude = apiDescription =>
         {

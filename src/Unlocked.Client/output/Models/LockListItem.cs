@@ -9,27 +9,37 @@ namespace Unlocked.Client.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     #pragma warning disable CS1591
-    public partial class UnlockRequestBody : IAdditionalDataHolder, IParsable
+    public partial class LockListItem : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>The id property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Id { get; set; }
+#nullable restore
+#else
+        public string Id { get; set; }
+#endif
+        /// <summary>The status property</summary>
+        public global::Unlocked.Client.Models.LockStatus? Status { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="global::Unlocked.Client.Models.UnlockRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="global::Unlocked.Client.Models.LockListItem"/> and sets the default values.
         /// </summary>
-        public UnlockRequestBody()
+        public LockListItem()
         {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::Unlocked.Client.Models.UnlockRequestBody"/></returns>
+        /// <returns>A <see cref="global::Unlocked.Client.Models.LockListItem"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::Unlocked.Client.Models.UnlockRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::Unlocked.Client.Models.LockListItem CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new global::Unlocked.Client.Models.UnlockRequestBody();
+            return new global::Unlocked.Client.Models.LockListItem();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -39,6 +49,8 @@ namespace Unlocked.Client.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "id", n => { Id = n.GetStringValue(); } },
+                { "status", n => { Status = n.GetEnumValue<global::Unlocked.Client.Models.LockStatus>(); } },
             };
         }
         /// <summary>
@@ -48,6 +60,8 @@ namespace Unlocked.Client.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
+            writer.WriteStringValue("id", Id);
+            writer.WriteEnumValue<global::Unlocked.Client.Models.LockStatus>("status", Status);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

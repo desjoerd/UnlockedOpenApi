@@ -20,11 +20,14 @@
         "tags": [
           "GetLockById"
         ],
+        "summary": "Get a lock by ID",
+        "description": "This endpoint retrieves a lock by its ID. If the lock is not found, it returns a 404 Not Found response.",
         "operationId": "GetLockById",
         "parameters": [
           {
             "name": "lockId",
             "in": "path",
+            "description": "The id of the lock",
             "required": true,
             "schema": {
               "type": "string",
@@ -63,7 +66,14 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "Bearer": [
+              ".default"
+            ]
+          }
+        ]
       },
       "put": {
         "tags": [
@@ -115,7 +125,86 @@
           "404": {
             "description": "Not Found"
           }
-        }
+        },
+        "security": [
+          {
+            "Bearer": [
+              ".default"
+            ]
+          }
+        ]
+      }
+    },
+    "/": {
+      "get": {
+        "tags": [
+          "Unlocked.Api"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer": [
+              ".default"
+            ]
+          }
+        ]
+      }
+    },
+    "/locks": {
+      "get": {
+        "tags": [
+          "Locks"
+        ],
+        "summary": "Documentation about this endpoint",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/LockListItem"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/LockListItem"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/LockListItem"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer": [
+              ".default"
+            ]
+          }
+        ]
       }
     }
   },
@@ -138,13 +227,26 @@
           }
         }
       },
+      "LockListItem": {
+        "required": [
+          "id"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "status": {
+            "$ref": "#/components/schemas/LockStatus"
+          }
+        }
+      },
       "LockStatus": {
         "enum": [
           "locked",
           "unlocked",
           "unknown"
-        ],
-        "description": "The wanted status for the lock"
+        ]
       },
       "ProblemDetails": {
         "type": "object",
@@ -205,6 +307,19 @@
         },
         "description": "Update the lock details"
       }
+    },
+    "securitySchemes": {
+      "Bearer": {
+        "type": "oauth2",
+        "flows": {
+          "clientCredentials": {
+            "tokenUrl": "/api/auth/token",
+            "scopes": {
+              ".default": "Access Unlocked API with the .default scope"
+            }
+          }
+        }
+      }
     }
   },
   "tags": [
@@ -213,6 +328,12 @@
     },
     {
       "name": "PostLockByIdUnlock"
+    },
+    {
+      "name": "Unlocked.Api"
+    },
+    {
+      "name": "Locks"
     }
   ]
 }

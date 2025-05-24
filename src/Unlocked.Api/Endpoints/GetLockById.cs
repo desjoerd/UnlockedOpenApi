@@ -15,7 +15,7 @@ public static class GetLockById
             .WithName(nameof(GetLockById));
     }
 
-    private class LockItem
+    internal class LockItem
     {
         public required LockStatus LockStatus { get; set; }
 
@@ -23,7 +23,15 @@ public static class GetLockById
         public string? Location { get; set; }
     }
 
-    private static Results<Ok<LockItem>, NotFound<ProblemDetails>> Handler(Guid lockId)
+    /// <summary>
+    /// Get a lock by ID
+    /// </summary>
+    /// <description>
+    /// This endpoint retrieves a lock by its ID. If the lock is not found, it returns a 404 Not Found response.
+    /// </description>
+    /// <param name="lockId">The id of the lock</param>
+    /// <returns></returns>
+    internal static Results<Ok<LockItem>, NotFound<ProblemDetails>> Handler(Guid lockId)
     {
         if (lockId == Guid.Empty)
         {
@@ -37,7 +45,8 @@ public static class GetLockById
 
         return TypedResults.Ok(new LockItem
         {
-            LockStatus = LockStatus.Unlocked
+            LockStatus = LockStatus.Unlocked,
+            Location = "Front Door"
         });
     }
 }

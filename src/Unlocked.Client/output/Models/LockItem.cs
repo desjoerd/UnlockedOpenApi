@@ -22,7 +22,7 @@ namespace Unlocked.Client.Models
 #else
         public string Location { get; set; }
 #endif
-        /// <summary>The wanted status for the lock</summary>
+        /// <summary>The lockStatus property</summary>
         public global::Unlocked.Client.Models.LockStatus? LockStatus { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Unlocked.Client.Models.LockItem"/> and sets the default values.

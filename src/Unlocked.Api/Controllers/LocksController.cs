@@ -13,7 +13,7 @@ public class LocksController : ControllerBase
     /// </summary>
     /// <returns></returns>
     [HttpGet]
-    internal ActionResult<List<LockListItem>> ListLocks()
+    public ActionResult<List<LockListItem>> ListLocks()
     {
         var locks = new List<LockListItem>() {
             new LockListItem { Id = "123" }

@@ -20,6 +20,7 @@ builder.Services.AddOptions<UnlockedOpenApiCustomizationOptions>()
 builder.Services.AddOpenApi(options =>
 {
     options.AddDocumentTransformer<UnlockedOpenApiServersDocumentTransformer>();
+    options.AddDocumentTransformer<SecuritySchemeDocumentTransformer>();
 
     options.AddLoggingOpenApiTransformers();
 });
@@ -52,6 +53,7 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
+    app.MapOpenApi("/openapi/{documentName}.yaml");
 }
 
 app.UseHttpsRedirection();
@@ -65,6 +67,8 @@ apiGroup.MapGetLockById();
 apiGroup.MapPostLockByIdUnlock();
 
 app.MapControllers();
+
+app.MapGet("/", () => "Welcome to the Unlocked OpenAPI!");
 
 app.Run();
 

@@ -1,6 +1,6 @@
 namespace Unlocked.Api.Endpoints.Models;
 
-internal enum LockStatus
+public enum LockStatus
 {
     Locked,
     Unlocked,
