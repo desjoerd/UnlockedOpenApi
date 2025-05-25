@@ -29,7 +29,7 @@ public static class GetLockById
     /// <description>
     /// This endpoint retrieves a lock by its ID. If the lock is not found, it returns a 404 Not Found response.
     /// </description>
-    /// <param name="lockId">The id of the lock</param>
+    /// <param name="lockId" example="7fbe9a8e-9961-4262-8160-831cf9e47e91">The id of the lock</param>
     /// <returns></returns>
     internal static Results<Ok<LockItem>, NotFound<ProblemDetails>> Handler(Guid lockId)
     {

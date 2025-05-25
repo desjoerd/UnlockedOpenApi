@@ -33,6 +33,9 @@ namespace Unlocked.Client.Locks.Item
         public WithLockItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/locks/{lockId}", rawUrl)
         {
         }
+        /// <summary>
+        /// This endpoint retrieves a lock by its ID. If the lock is not found, it returns a 404 Not Found response.
+        /// </summary>
         /// <returns>A <see cref="global::Unlocked.Client.Models.LockItem"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -77,6 +80,9 @@ namespace Unlocked.Client.Locks.Item
             };
             return await RequestAdapter.SendAsync<global::Unlocked.Client.Models.UnlockResponse>(requestInfo, global::Unlocked.Client.Models.UnlockResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+        /// <summary>
+        /// This endpoint retrieves a lock by its ID. If the lock is not found, it returns a 404 Not Found response.
+        /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

@@ -2,6 +2,8 @@ using System.Text.Json.Serialization;
 
 using Microsoft.AspNetCore.Authentication.BearerToken;
 
+using Scalar.AspNetCore;
+
 using Unlocked.Api.Endpoints;
 using Unlocked.Api.OpenApi;
 
@@ -19,6 +21,7 @@ builder.Services.AddOptions<UnlockedOpenApiCustomizationOptions>()
 
 builder.Services.AddOpenApi(options =>
 {
+    options.AddOperationTransformer<SortResponsesOperationTransformer>();
     options.AddDocumentTransformer<UnlockedOpenApiServersDocumentTransformer>();
     options.AddDocumentTransformer<SecuritySchemeDocumentTransformer>();
 
@@ -54,6 +57,8 @@ if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
     app.MapOpenApi("/openapi/{documentName}.yaml");
+
+    app.MapScalarApiReference();
 }
 
 app.UseHttpsRedirection();
@@ -63,12 +68,13 @@ var apiGroup = app
 
 apiGroup.ProducesProblem(500);
 
-apiGroup.MapGetLockById();
 apiGroup.MapPostLockByIdUnlock();
+apiGroup.MapGetLockById();
 
 app.MapControllers();
 
-app.MapGet("/", () => "Welcome to the Unlocked OpenAPI!");
+app.MapGet("/", () => "Welcome to the Unlocked OpenAPI!")
+    .ExcludeFromDescription();
 
 app.Run();
 

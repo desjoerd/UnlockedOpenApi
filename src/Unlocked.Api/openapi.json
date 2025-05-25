@@ -16,65 +16,6 @@
   ],
   "paths": {
     "/locks/{lockId}": {
-      "get": {
-        "tags": [
-          "GetLockById"
-        ],
-        "summary": "Get a lock by ID",
-        "description": "This endpoint retrieves a lock by its ID. If the lock is not found, it returns a 404 Not Found response.",
-        "operationId": "GetLockById",
-        "parameters": [
-          {
-            "name": "lockId",
-            "in": "path",
-            "description": "The id of the lock",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          }
-        ],
-        "responses": {
-          "500": {
-            "description": "Internal Server Error",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          },
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/LockItem"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "Bearer": [
-              ".default"
-            ]
-          }
-        ]
-      },
       "put": {
         "tags": [
           "PostLockByIdUnlock"
@@ -102,16 +43,6 @@
           "required": true
         },
         "responses": {
-          "500": {
-            "description": "Internal Server Error",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          },
           "200": {
             "description": "OK",
             "content": {
@@ -124,6 +55,16 @@
           },
           "404": {
             "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
           }
         },
         "security": [
@@ -133,20 +74,54 @@
             ]
           }
         ]
-      }
-    },
-    "/": {
+      },
       "get": {
         "tags": [
-          "Unlocked.Api"
+          "GetLockById"
+        ],
+        "summary": "Get a lock by ID",
+        "description": "This endpoint retrieves a lock by its ID. If the lock is not found, it returns a 404 Not Found response.",
+        "operationId": "GetLockById",
+        "parameters": [
+          {
+            "name": "lockId",
+            "in": "path",
+            "description": "The id of the lock",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "example": "7fbe9a8e-9961-4262-8160-831cf9e47e91"
+          }
         ],
         "responses": {
           "200": {
             "description": "OK",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/LockItem"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
                 }
               }
             }
@@ -324,13 +299,10 @@
   },
   "tags": [
     {
-      "name": "GetLockById"
-    },
-    {
       "name": "PostLockByIdUnlock"
     },
     {
-      "name": "Unlocked.Api"
+      "name": "GetLockById"
     },
     {
       "name": "Locks"
