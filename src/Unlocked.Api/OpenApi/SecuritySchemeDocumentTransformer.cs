@@ -6,9 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.BearerToken;
 using Microsoft.AspNetCore.OpenApi;
-using Microsoft.OpenApi.Extensions;
 using Microsoft.OpenApi.Models;
-using Microsoft.OpenApi.Models.Interfaces;
 using Microsoft.OpenApi.Models.References;
 
 public class SecuritySchemeDocumentTransformer
@@ -42,6 +40,7 @@ public class SecuritySchemeDocumentTransformer
                     }
                 }
             });
+
             document.RegisterComponents();
             // Apply it as a requirement for all operations
             foreach (var operation in document.Paths.Values.SelectMany(path => path.Operations))

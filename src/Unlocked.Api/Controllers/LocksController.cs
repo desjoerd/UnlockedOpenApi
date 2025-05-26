@@ -16,7 +16,7 @@ public class LocksController : ControllerBase
     public ActionResult<List<LockListItem>> ListLocks()
     {
         var locks = new List<LockListItem>() {
-            new LockListItem { Id = "123" }
+            new LockListItem { Id = Guid.NewGuid() }
         };
 
         return locks;

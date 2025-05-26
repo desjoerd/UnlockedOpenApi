@@ -195,6 +195,8 @@
             "$ref": "#/components/schemas/LockStatus"
           },
           "location": {
+            "maxLength": 120,
+            "pattern": "^[a-zA-Z ]*$",
             "type": [
               "null",
               "string"
@@ -209,7 +211,8 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "string"
+            "type": "string",
+            "format": "uuid"
           },
           "status": {
             "$ref": "#/components/schemas/LockStatus"

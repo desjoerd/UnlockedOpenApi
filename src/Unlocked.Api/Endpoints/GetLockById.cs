@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
 using Microsoft.AspNetCore.Http.HttpResults;
@@ -19,7 +20,8 @@ public static class GetLockById
     {
         public required LockStatus LockStatus { get; set; }
 
-        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [RegularExpression(@"^[a-zA-Z ]*$")]
+        [MaxLength(120)]
         public string? Location { get; set; }
     }
 
@@ -30,7 +32,6 @@ public static class GetLockById
     /// This endpoint retrieves a lock by its ID. If the lock is not found, it returns a 404 Not Found response.
     /// </description>
     /// <param name="lockId" example="7fbe9a8e-9961-4262-8160-831cf9e47e91">The id of the lock</param>
-    /// <returns></returns>
     internal static Results<Ok<LockItem>, NotFound<ProblemDetails>> Handler(Guid lockId)
     {
         if (lockId == Guid.Empty)
