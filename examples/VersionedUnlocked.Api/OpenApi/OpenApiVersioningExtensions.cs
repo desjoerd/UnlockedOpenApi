@@ -2,7 +2,7 @@
 
 using Microsoft.AspNetCore.Mvc.Abstractions;
 using Microsoft.AspNetCore.OpenApi;
-using Microsoft.OpenApi.Models;
+using Microsoft.OpenApi;
 
 namespace VersionedUnlocked.Api.OpenApi;
 

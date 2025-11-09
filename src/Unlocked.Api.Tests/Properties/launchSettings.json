@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "Unlocked.Api.Tests": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:51367;http://localhost:51368"
+    }
+  }
+}

@@ -19,7 +19,7 @@ namespace Unlocked.Client.Locks
     public partial class LocksRequestBuilder : BaseRequestBuilder
     {
         /// <summary>Gets an item from the Unlocked.Client.locks.item collection</summary>
-        /// <param name="position">The id of the lock</param>
+        /// <param name="position">Unique identifier of the item</param>
         /// <returns>A <see cref="global::Unlocked.Client.Locks.Item.WithLockItemRequestBuilder"/></returns>
         public global::Unlocked.Client.Locks.Item.WithLockItemRequestBuilder this[Guid position]
         {
@@ -31,7 +31,7 @@ namespace Unlocked.Client.Locks
             }
         }
         /// <summary>Gets an item from the Unlocked.Client.locks.item collection</summary>
-        /// <param name="position">The id of the lock</param>
+        /// <param name="position">Unique identifier of the item</param>
         /// <returns>A <see cref="global::Unlocked.Client.Locks.Item.WithLockItemRequestBuilder"/></returns>
         [Obsolete("This indexer is deprecated and will be removed in the next major version. Use the one with the typed parameter instead.")]
         public global::Unlocked.Client.Locks.Item.WithLockItemRequestBuilder this[string position]

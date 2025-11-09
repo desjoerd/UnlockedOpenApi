@@ -1,13 +1,12 @@
-namespace Unlocked.Api.OpenApi;
-
 using System.Threading;
 using System.Threading.Tasks;
 
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.BearerToken;
 using Microsoft.AspNetCore.OpenApi;
-using Microsoft.OpenApi.Models;
-using Microsoft.OpenApi.Models.References;
+using Microsoft.OpenApi;
+
+namespace Unlocked.Api.OpenApi;
 
 public class SecuritySchemeDocumentTransformer
     (IAuthenticationSchemeProvider authenticationSchemeProvider)

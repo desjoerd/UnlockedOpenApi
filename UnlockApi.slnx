@@ -4,6 +4,18 @@
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
+  <Folder Name="/.root/">
+    <File Path=".editorconfig" />
+    <File Path=".gitattributes" />
+    <File Path=".gitignore" />
+    <File Path=".spectral.yml" />
+    <File Path="Directory.Build.props" />
+    <File Path="Directory.Packages.props" />
+    <File Path="global.json" />
+    <File Path="package.json" />
+    <File Path="package-lock.json" />
+    <File Path="README.md" />
+  </Folder>
   <Folder Name="/examples/">
     <Project Path="examples/VersionedUnlocked.Api/VersionedUnlocked.Api.csproj" />
   </Folder>

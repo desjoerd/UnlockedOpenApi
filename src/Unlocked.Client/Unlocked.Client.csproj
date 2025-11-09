@@ -10,4 +10,13 @@
     <PackageReference Include="Microsoft.Kiota.Bundle" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Unlocked.Api\Unlocked.Api.csproj" PrivateAssets="All" />
+  </ItemGroup>
+    
+  <Target Name="GenerateClient" BeforeTargets="Build">
+    <Message Text="Generating Unlocked Client" Importance="high"/>
+    <Exec Command="dotnet kiota update"/>
+</Target>
+
 </Project>

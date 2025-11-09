@@ -1,6 +1,4 @@
-﻿using System.Text.Json.Serialization.Metadata;
-
-using Microsoft.AspNetCore.OpenApi;
+﻿using Microsoft.AspNetCore.OpenApi;
 
 namespace VersionedUnlocked.Api.OpenApi;
 
