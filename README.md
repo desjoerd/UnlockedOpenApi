@@ -35,7 +35,7 @@ Settings in `csproj`:
 
 ### Remarks
 
-.yaml on build is not yet supported in .NET 10-preview-3
+.yaml on build is not yet supported in .NET 10.
 
 The default document is `v1`. This will be in the output without suffix.
 See https://github.com/dotnet/aspnetcore/issues/58782.
@@ -107,11 +107,6 @@ Program.cs:
 ```csharp
 builder.Services.AddValidation();
 ```
-
-## .NET 10 Preview 3 bugs
-
-Minimal api validation is not working for records: https://github.com/dotnet/aspnetcore/issues/61379.
-
 
 ## Describing API Responses
 
